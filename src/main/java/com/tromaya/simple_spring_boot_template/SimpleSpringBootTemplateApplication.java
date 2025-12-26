@@ -32,13 +32,13 @@ public class SimpleSpringBootTemplateApplication {
 
     @PostConstruct
     public void initData() {
+
         // Check if data already exists
         if (authorRepository.count() > 0) {
-            System.out.println("Data already exists, skipping initialization");
             return;
         }
 
-        // Create 3 Authors
+        // Create 3 dummy Authors
         Author author1 = Author.builder()
                 .name("George")
                 .lastName("Orwell")
@@ -69,12 +69,15 @@ public class SimpleSpringBootTemplateApplication {
                 .writtenBooks(new ArrayList<>())
                 .build();
 
-        // Save authors first
+        // Save authors to the database
         authorRepository.save(author1);
         authorRepository.save(author2);
         authorRepository.save(author3);
 
-        // Create 3 Books
+        System.out.println("Sample authors created and saved successfully!");
+        System.out.println("Authors: " + author1.getName() + ", " + author2.getName() + ", " + author3.getName());
+
+        // Create 3 dummy Books
         Book book1 = Book.builder()
                 .title("1984")
                 .isbn("978-0-452-28423-4")
@@ -118,7 +121,10 @@ public class SimpleSpringBootTemplateApplication {
         bookRepository.save(book2);
         bookRepository.save(book3);
 
-        // Create 3 Users
+        System.out.println("Sample books created and saved successfully!");
+        System.out.println("Books: " + book1.getTitle() + ", " + book2.getTitle() + ", " + book3.getTitle());
+
+        // Create 3 dummy Users
         User user1 = User.builder()
                 .name("John")
                 .lastName("Doe")
@@ -153,9 +159,7 @@ public class SimpleSpringBootTemplateApplication {
         userRepository.save(user2);
         userRepository.save(user3);
 
-        System.out.println("Sample entities created successfully!");
-        System.out.println("Authors: " + author1.getName() + ", " + author2.getName() + ", " + author3.getName());
-        System.out.println("Books: " + book1.getTitle() + ", " + book2.getTitle() + ", " + book3.getTitle());
+        System.out.println("Sample users created and saved successfully!");
         System.out.println("Users: " + user1.getName() + ", " + user2.getName() + ", " + user3.getName());
     }
 
