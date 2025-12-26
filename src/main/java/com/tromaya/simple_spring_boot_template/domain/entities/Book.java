@@ -31,9 +31,13 @@ public class Book {
     @Column(name = "description",nullable = true)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY) // @ManyToOne does NOT use mappedBy. mappedBy is only used on the non-owning side of a relationship
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "borrower_id", nullable = true)
+    private User borrower;
 
     @CreationTimestamp
     @Column(name = "created_at",nullable = false, updatable = false)
